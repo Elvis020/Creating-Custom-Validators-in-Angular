@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+      <!-- Stsrt-of-Form -->
+      <form [formGroup]= "elvisForms" (ngSubmit)="onSubmit()">
+
+          <!-- Project Name -->
+        <div class="form-group">
+          <label for="name" > Project Name</label>
+          <input id="name" class="form-control" type="text" formControlName='name'>
+          <small class="text-spacey" *ngIf="!this.elvisForms.get('name').valid && this.elvisForms.get('name').touched ">
+            <span *ngIf="this.elvisForms.get('name').errors['required']">This is field is required</span>
+            <span *ngIf="this.elvisForms.get('name').errors['nameIsIvalid']">Name is already taken</span>
+            <span *ngIf="this.elvisForms.get('name').errors['PleaseItsInvalid']">Name is already taken: Source is from an Observable/Promise</span>
+          </small>
+
+        </div>
+
+          <!-- Email -->
+        <div class="form-group">
+          <label for="mail" >Email</label>
+          <input id="mail" class="form-control" type="email" formControlName='mail'>
+          <small class="text-spacey" *ngIf="!this.elvisForms.get('mail').valid && this.elvisForms.get('mail').touched ">
+            <span *ngIf="this.elvisForms.get('mail').errors['required']">This is field is required</span>
+            <span *ngIf="this.elvisForms.get('mail').errors['email']">Email is not valid</span>
+          </small>
+
+        </div>
+
+        <!-- Project Status Selector -->
+        <div class="form-group">
+          <label for="status" >Project Status</label>
+          <select id="status" class="form-control" formControlName='status'>
+            <option value="critical">Critical</option>
+            <option value="finished">Finished</option>
+            <option value="stable">Stable</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-dark">
+          Create Project
+        </button>
+      </form>
+      <!-- End-of-form -->
+
+    </div>
+  </div>
+</div>
